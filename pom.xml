@@ -21,6 +21,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--热加载 1.springboot属性spring.devtools.restart.enable: true-->
+		<!-- 2.Settings->Advanced Settings->Allow auto-make...: true-->
+		<!-- 3.Settings->Build,Exection...->Compiler->Build project auto...: true-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<!--lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -33,6 +41,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<fork>true</fork>
+					<addResources>true</addResources>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
