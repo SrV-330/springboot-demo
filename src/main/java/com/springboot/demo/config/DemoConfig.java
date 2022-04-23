@@ -17,12 +17,12 @@ public class DemoConfig {
 
     @Bean
     public User user() {
-        return new User("001", "user001");
+        return new User("001", "user001",1);
     }
 
     @Bean("user002")
     public User user1() {
-        return new User("002", "user002");
+        return new User("002", "user002",2);
     }
 
     @Bean("pet001")
@@ -34,6 +34,6 @@ public class DemoConfig {
     @Bean("user003")
     @ConditionalOnMissingBean(name = "user002")
     public User user2() {
-        return new User("003", "user003");
+        return new User("003", "user003",3);
     }
 }

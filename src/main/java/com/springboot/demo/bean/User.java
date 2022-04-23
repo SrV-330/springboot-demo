@@ -13,4 +13,5 @@ import org.springframework.context.annotation.Bean;
 public class User {
     public String uid;
     public String uname;
+    public Integer age;
 }

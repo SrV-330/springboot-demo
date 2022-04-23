@@ -10,5 +10,6 @@
     <bean id="zhangsan01" class="com.springboot.demo.bean.User">
         <property name="uid" value="zhangsan01"/>
         <property name="uname" value="zhangsan"/>
+        <property name="age" value="18"/>
     </bean>
 </beans>
