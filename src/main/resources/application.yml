@@ -6,18 +6,19 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    lease-expiration-duration-in-seconds: 10 #心跳等待周期
-    lease-renewal-interval-in-seconds: 30 #心跳续约周期
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 30 #表示 Eureka Server 在接收到上一个心跳之后等待下一个心跳的秒数（默认 90 秒），若不能在指定时间内收到心跳，则移除此实例，并禁止此实例的流量。
+    lease-renewal-interval-in-seconds: 15 #表示 Eureka Client 向 Eureka Server 发送心跳的频率（默认 30 秒），如果在 lease-expiration-duration-in-seconds 指定的时间内未收到心跳，则移除该实例。
   client:
     register-with-eureka: true #false表示不向注册中心注册自己。
     fetch-registry: true #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
-    registryFetchIntervalSeconds: 10
+    registry-fetch-interval-seconds: 10 #10秒去注册中心拉取一次
     service-url:
-      defaultZone: http://localhost:8761/eureka/ #单机版服务注册中心
-ribbon:
-  ReadTimeout: 6000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间
-  ConnectionTimeout: 6000 #建立连接后，服务器读取到可用资源的时间
-logging:
-  level:
-    #fei日志
-    com.springboot.demo.controller.TestController: debug
+      default-zone: http://eureka1:8761/eureka/,http://eureka1:8762/eureka/ #单机版服务注册中心
+#ribbon:
+#  ReadTimeout: 6000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间
+#  ConnectionTimeout: 6000 #建立连接后，服务器读取到可用资源的时间
+#logging:
+#  level:
+#    #fei日志
+#    com.springboot.demo.controller.TestController: debug

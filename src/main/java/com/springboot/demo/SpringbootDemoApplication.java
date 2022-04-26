@@ -14,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 @EnableEurekaClient
 @Slf4j
-@FeignClient
+//@FeignClient
 public class SpringbootDemoApplication {
 
     public static void main(String[] args) {
