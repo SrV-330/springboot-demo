@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping({"/test", "/"})
 @Slf4j
 public class TestController {
 
@@ -25,6 +25,11 @@ public class TestController {
     @Autowired
     @Qualifier("errorException")
     private ErrorException errExcep;
+
+    @RequestMapping("/actuator/info")
+    public String pong(){
+        return "PONG";
+    }
 
     @RequestMapping("/user")
     public User test(@RequestParam(value = "name", required = false) String uname,
@@ -46,7 +51,7 @@ public class TestController {
     }
 
     @ExceptionHandler(Exception.class)
-    public ErrorException error(){
+    public ErrorException error() {
         return errExcep;
     }
 }
