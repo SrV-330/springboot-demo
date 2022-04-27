@@ -14,7 +14,8 @@ eureka:
     fetch-registry: true #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
     registry-fetch-interval-seconds: 10 #10秒去注册中心拉取一次
     service-url:
-      default-zone: http://eureka1:8761/eureka/,http://eureka1:8762/eureka/ #单机版服务注册中心
+      default-zone: http://localhost:8761/eureka/
+#      default-zone: http://eureka1:8761/eureka/,http://eureka1:8762/eureka/ #单机版服务注册中心
 #ribbon:
 #  ReadTimeout: 6000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间
 #  ConnectionTimeout: 6000 #建立连接后，服务器读取到可用资源的时间
