@@ -38,6 +38,16 @@
 
 
 
+## 静态资源
+
+* META-INF
+
+* resources
+
+* static
+
+不配置可以直接访问
+
 
 
 

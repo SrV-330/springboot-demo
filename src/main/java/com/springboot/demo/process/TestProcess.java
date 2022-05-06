@@ -20,6 +20,10 @@ import javax.swing.*;
 import javax.tools.Diagnostic;
 import java.util.Set;
 
+/**
+ * process要先编译打jar包才能被使用,
+ * 否则报错 javax.annotation.processing.Processor: Provider com.springboot.demo.process.TestProcess not found
+ */
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes("com.springboot.demo.annotation.TestAnno")
 @AutoService(Processor.class)
