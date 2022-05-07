@@ -3,6 +3,11 @@ server.port: 8088
 spring:
   application:
     name: spring-demo
+  mvc: #  Path pattern used for static resources. default: /**
+    static-path-pattern: res/**
+  web: # Locations of static resources. Defaults to classpath:[/META-INF/resources/, /resources/, /static/, /public/].
+    resources:
+      static-locations: classpath:/static/res/
 eureka:
   instance:
     prefer-ip-address: true
@@ -15,6 +20,11 @@ eureka:
     registry-fetch-interval-seconds: 10 #10秒去注册中心拉取一次
     service-url:
       default-zone: http://localhost:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info,health,prometheus,metrics,service-registry"
 #      default-zone: http://eureka1:8761/eureka/,http://eureka1:8762/eureka/ #单机版服务注册中心
 #ribbon:
 #  ReadTimeout: 6000 #建立连接所用的时间，适用于网络状况正常的情况下，两端两端连接所用的时间

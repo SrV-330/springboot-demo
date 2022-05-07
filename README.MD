@@ -48,7 +48,8 @@
 
 不配置可以直接访问
 
-
+* `spring.mvc.static-path-pattern`:  配置静态资源映射(默认映射: /**)
+* `spring.web.resources.static-locations`: 配置静态资源路径(默认路径: [/META-INF/resources/, /resources/, /static/, /public/])
 
 
 
