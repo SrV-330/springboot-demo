@@ -5,13 +5,13 @@ import com.springboot.demo.exception.ErrorException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Enumeration;
 
 @RestController
@@ -26,9 +26,17 @@ public class TestController {
     @Qualifier("errorException")
     private ErrorException errExcep;
 
-    @RequestMapping("/actuator/info")
+    @RequestMapping("/ping")
     public String pong(){
         return "PONG";
+    }
+
+    @Value("${spring.web.resources.static-locations}")
+    private String favicon;
+
+    @GetMapping("/favicon.ico")
+    public void favicon(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.sendRedirect("res/favicon.ico");
     }
 
     @RequestMapping("/user")

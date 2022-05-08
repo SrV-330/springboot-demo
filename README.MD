@@ -19,12 +19,10 @@
 ## 自动配置
 
 * 默认扫描主程序`*Application`所在的包及其下面的子包所有组件
-
 * `@ComponentScan`,`@ComponentScans`: 指定扫描包
 * `@Component`: 使用类名作为ID注册
 * `@Bean`: 注解在配置类的方法上,以方法名为ID注册Bean
 * `@Controller`,`@Service`,`@Repository`
-
 * spring-boot-autoconfigure: 自动配置包
 * `@Configuration`: 指定一个类为配置类,配置类也是一个Component
   * proxyBeanMethods: 默认true.
@@ -35,23 +33,33 @@
 * `@Conditional`: 满足条件进行装配
   * `@ConditionalOnBean`,`@ConditionalOnMissingBean`
 * `@ConfigurationProperties`: 注解在组件上绑定属性
+* `@EnableConfigurationProperties`: 启用注解在组件上绑定属性(配置在Config类上)
 
 
 
 ## 静态资源
 
 * META-INF
-
 * resources
-
 * static
+* public
 
 不配置可以直接访问
 
 * `spring.mvc.static-path-pattern`:  配置静态资源映射(默认映射: /**)
 * `spring.web.resources.static-locations`: 配置静态资源路径(默认路径: [/META-INF/resources/, /resources/, /static/, /public/])
 
+### favicon
 
+* icon图标:favicon.ico(默认: true)
 
+### 静态资源配置
 
+* `WebMvcAutoConfiguration`
 
+  ```yaml
+  resources: 
+  	add-mapping: false # false无法访问静态资源
+  ```
+
+  
