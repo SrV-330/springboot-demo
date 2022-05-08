@@ -55,7 +55,7 @@
 
 ### 静态资源配置
 
-* `WebMvcAutoConfiguration`
+* `@WebMvcAutoConfiguration`
 
   ```yaml
   resources: 
