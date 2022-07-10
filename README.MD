@@ -60,6 +60,26 @@
   ```yaml
   resources: 
   	add-mapping: false # false无法访问静态资源
+  	# WebMvcAutoConfiguration.addResourceHandles()方法通过resources.add-mapping属性判断是否禁用静态资源的访问
+	cache:
+  		period: 11000 # 静态资源缓存时间
+  	# WebMvcAutoConfiguration.WelcomePageHandlerMapping()控制首页相关
   ```
-
   
+
+### rest映射
+
+- HiddenHttpMethodFilter过滤器使用隐藏属性_method将POST变成DELETE,PUT,PATCH
+  - mvc.hiddenmethod.filter.enabled:true开启
+- @GetMapping
+- @PostMapping
+- @PutMapping
+
+### dispatchService
+
+- 循环匹配最适合的handleMapping
+
+
+
+
+
