@@ -79,7 +79,12 @@
 
 - 循环匹配最适合的handleMapping
 
+### 常用注解
 
-
-
+- @PathVariable: 路径变量,/user/{id}/{name}
+- @RequestHeader: 获取请求头,User-Agent,String,Map<String,String>
+- @RequestParam: 获取请求参数,/user?id=1&name=Alice,String,List<String>,Map<String,String>
+- @CookieValue: 获取cookie值,String,Cookie
+- @RequestBody: 获取请求体,String
+- @RequestAttribute: 取出request.setAttribute中的属性
 
