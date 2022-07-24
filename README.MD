@@ -88,3 +88,40 @@
 - @RequestBody: 获取请求体,String
 - @RequestAttribute: 取出request.setAttribute中的属性
 
+### 如何解析Controller方法上的参数和注解?
+
+#### HandlerAdapter适配器
+
+- dispatcherservlet类中doDispatch调用
+
+- `boolean supports(Object handler);` 寻找符合的handler
+- `ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception;`调用真正的处理方法
+- **继承关系: **`RequestMappingHandlerAdapter` **->** `AbstractHandlerMethodAdapter` **->** `HandlerAdapter`
+- **普通请求调用过程: **`handler()` **->** `handleInternal()` **->** `invokeHandlerMethod()` **->** `ServletInvocableHandlerMethod.invokeAndHandle()` **->** `ServletInvocableHandlerMethod.invokeForRequest`()
+- `invokeHandlerMethod()`中设置参数解析器`argumentResolvers`解析@RequestParam,@PathVariable等注解
+
+#### RequestMappingHandlerAdapter
+
+- `getDefaultArgumentResolvers()`获取默认的参数处理器
+- `getDefaultReturnValueHandlers()`获取默认的返回值处理器
+
+####  HandlerMethodArgumentResolverComposite参数解析器组合
+
+- `public boolean supportsParameter(MethodParameter parameter)`判断是否支持,先从缓存中寻找,再从添加的resolver的List中寻找
+- `public Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
+  			NativeWebRequest webRequest, @Nullable WebDataBinderFactory binderFactory) throws Exception`真正处理参数的方法
+- XXXResolver还对应目标方法里可以支持的参数,PS:HttpServletRequest
+
+#### HandlerMethodReturnValueHandlerComposite返回值处理器
+
+- 同上
+
+#### ServletInvocableHandlerMethod调用请求方法
+
+- `invokeForRequest()`调用请求方法
+  - 先获取目标方法各个参数的信息`getMethodArgumentValues()`
+    - getMethodArgumentValues()中两重循环判断各个参数是否支持各个参数解析器
+    - 支持则用解析器计算取值
+
+
+
