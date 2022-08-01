@@ -123,5 +123,14 @@
     - getMethodArgumentValues()中两重循环判断各个参数是否支持各个参数解析器
     - 支持则用解析器计算取值
 
+#### Controller方法支持的复杂参数
 
+- **Map,Model (map,model中的数据都放在request的请求域 request.setAttribute()),Errors/BindingResult,RedirectAttributes(重定向携带数据),ServletResponse(response),SessionStatus,UriComponentsBuilder**
 
+- **Map类型参数,会返回mavContainer.getModel(); --> BindingAwareModelMap是Model也是Map**
+
+- **ModelAndView Model:数据,View:目标页面**
+
+#### 自定义参数处理
+
+- **ServletModelAttributeMethodProcessor**
