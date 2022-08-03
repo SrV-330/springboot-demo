@@ -127,10 +127,16 @@
 
 - **Map,Model (map,model中的数据都放在request的请求域 request.setAttribute()),Errors/BindingResult,RedirectAttributes(重定向携带数据),ServletResponse(response),SessionStatus,UriComponentsBuilder**
 
-- **Map类型参数,会返回mavContainer.getModel(); --> BindingAwareModelMap是Model也是Map**
+- **Map类型参数,会返回mavContainer.getModel(); --> Bind ingAwareModelMap是Model也是Map**
 
 - **ModelAndView Model:数据,View:目标页面**
 
 #### 自定义参数处理
 
-- **ServletModelAttributeMethodProcessor**
+- **ServletModelAttributeMethodProcessor:处理自定义参数**
+- **WebDataBinder:数据绑定器**
+- **GenericConversionService:参数转换 String --> Number, Number --> String, JavaBean --> String**
+
+##### 自定义Convertor
+
+- 返回WebMvcConfigurer类的Bean,重写方法addFormatters(FormatterRegistry registry)注册自定义Convertor
