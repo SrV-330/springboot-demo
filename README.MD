@@ -140,3 +140,33 @@
 ##### 自定义Convertor
 
 - 返回WebMvcConfigurer类的Bean,重写方法addFormatters(FormatterRegistry registry)注册自定义Convertor
+
+#### 返回值处理器处理Controller的返回值
+
+- 和参数解析一样,使用返回值处理器(Handler,Process)处理
+- 判断是否支持该返回值的类型(`supportsReturnType()`),支持使用`handleReturnValue()`处理
+-   支持返回类型
+  - ModelAndView
+  - Model
+  - View
+  - ResponseEntity
+  - ResponseBodyEmitter
+  - StreamingResponseBody
+  - HttpEntity
+  - HttpHeaders
+  - Callable(异步)
+- @ResponseBody --> RequestResponseBodyMethodProcessor
+
+##### RequestResponseBodyMethodProcessor
+
+- 使用消息转换器(MessageConverters)写出 
+  - 内容协商(浏览器Request Headers 中的 Accept属性,浏览器能接受的类型)
+    - text/html:接受类型
+    - q=0.9:权重
+  - 服务器决定产出什么类型的内容
+  - 接受类型与产出类型匹配
+
+- 遍历并寻找可以处理返回类型(Class类 --> Json字符串,Json --> Class)的消息转换器(HttpMessageConverter)
+  - HttpMessageConverter
+    - canRead(Class<?>,MediaType):是否支持读入请求的class转为MediaType
+    - canWrite(Class<?>,MediaType):是否支持响应的class转为MediaType
